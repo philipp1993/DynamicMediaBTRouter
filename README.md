@@ -7,10 +7,11 @@ The Bluetooth channel should be opened when a playback is started and closed aft
 
 ### Why another app? There a several who do the same!
 No, not exactly! All other apps I've seen are not dynamic or (I suppose) use the isMusicPlaying() function which in fact isn't reliable. 
-Therefore a use the Visualizer API to grab anonymized info from the global audio mix and can for sure determine if music is played.
+Therefore a use the Visualizer API to grab anonymized info from the global audiomix and can for sure determine if audio is played.
 
 ## What’s left to do?
 Nearly EVERYTHING! :(
 - A fancy UI
 - An intent listener (as already written in the AndroidManifest)
-- Adding a delay/pause -- currently audio is lost while the BluetoothSco is open
+- start on boot / on bluetooth device connected ...
+- Adding a delay/pause while opening the BluethootSco -- currently audio is lost
