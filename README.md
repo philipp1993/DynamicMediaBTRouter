@@ -5,7 +5,7 @@ A simple background service which detects any playback on the global audiomix an
 Enable the _dynamic_ playback of any media sound on the Bluetooth device. Especially for the direction guide of your navigation software.
 The Bluetooth channel should be opened when a playback is started and closed after the playback is finished.
 
-### Why another app? There a several who do the same!
+### Why another app? There a several that do the same!
 No, not exactly! All other apps I've seen are not dynamic or (I suppose) use the isMusicPlaying() function which in fact isn't reliable. 
 Therefore a use the Visualizer API to grab anonymized info from the global audiomix and can for sure determine if audio is played.
 
