@@ -22,6 +22,7 @@ Send of the following intents
 
 ### Requirements
 - An Android device with the minimum API Level 11 (Honeycomb - Android 3.0)
+    - API Level 18 (Jelly Bean - Android 4.3) is preferred because of different handling of the bluetooth sco stream. 
 - A bluetooth device which supports the hands free profile (usually headsets or car speakerphones)
 - No task managers! They're crap and nothing else! They kill the background service so don't complain!
 
