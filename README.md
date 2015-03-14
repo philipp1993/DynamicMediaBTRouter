@@ -21,7 +21,9 @@ Send of the following intents
 - net.philipp_koch.dynamicmediabtrouter.OFF
 
 ### Requirements
-An Android device with the minimum API Level 11 (Honeycomb - Android 3.0) is needed.
+- An Android device with the minimum API Level 11 (Honeycomb - Android 3.0)
+- A bluetooth device which supports the hands free profile (usually headsets or car speakerphones)
+- No task managers! They're crap and nothing else! They kill the background service so don't complain!
 
 #### Working as designed
 If you end the "call" the redirection doesn't stop and audio is routed to nowhere.
@@ -31,6 +33,9 @@ If redirection starts and you are already aware of the information presented you
 After the information is played the service will close the channel as usual and open it again as soon as audio is detected.
 
 If you use the app to redirect sound the whole time and you end the "call" accidentally you have to pause the music for at least a few seconds. The service will stop the redirection and start it again as you press play.
+
+##### "_The sound is shitty fix that!!1!_"
+I can't! The hands free profile isn't intended for high quality. Use A2DP instead!
 
 ## What’s left to do?
 Nearly EVERYTHING! :(
