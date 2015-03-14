@@ -17,8 +17,8 @@ The redirection only starts if a bluetooth device is connected to the handsfree 
 ### Intent to start/stop the service
 It's really really simple!
 Send of the following intents
- - net.philipp_koch.dynamicmediabtrouter.ON | to start the service
--  net.philipp_koch.dynamicmediabtrouter.OFF | to stop the service
+- net.philipp_koch.dynamicmediabtrouter.ON | to start the service
+- net.philipp_koch.dynamicmediabtrouter.OFF | to stop the service
 
 ## What’s left to do?
 Nearly EVERYTHING! :(
