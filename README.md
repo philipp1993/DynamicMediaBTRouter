@@ -12,7 +12,7 @@ The visualizer API function I use is only available since API Level 19 (Kitkat -
 
 ### State based redirection
 The service is only startable if the bluetooth adapter is turned on, everything else wouldn't make sense would it?
-The redirection only starts if a bluetooth device is connected to the handsfree bluetooth profile. If the bluetooth profile isn't available anymore the redirection stops.
+The redirection only starts if a bluetooth device is connected to the hands free bluetooth profile. If the hands free connection isn't available anymore the redirection stops.
 
 ### Intent to start/stop the service
 It's really really simple!
