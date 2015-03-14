@@ -16,13 +16,13 @@ public class MainActivity extends Activity {
 
     public void Off()
     {
-        Toast.makeText(this, "Off", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Action: Off", Toast.LENGTH_LONG).show();
         stopService(new Intent(this, RedirectorService.class));
     }
 
     public void On()
     {
-        Toast.makeText(this, "On", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Action: On", Toast.LENGTH_LONG).show();
         startService(new Intent(this, RedirectorService.class));
     }
 
