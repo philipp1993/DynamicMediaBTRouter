@@ -33,13 +33,13 @@ Because the app was intended for navigation apps this is a useful design:
 If redirection starts and you are already aware of the information presented you could end the "call" as soon it starts.
 After the information is played the service will close the channel as usual and open it again as soon as audio is detected.
 
-If you use the app to redirect sound the whole time and you end the "call" accidentally you have to pause the music for at least a few seconds. The service will stop the redirection and start it again as you press play.
+If you use the app to redirect music for an ongoing time and you end the "call" accidentally you have to pause the music for at least a few seconds. The service will stop the redirection and start it again as you press play.
 
 ##### "_The sound is shitty fix that!!1!_"
 I can't! The hands free profile isn't intended for high quality. Use A2DP instead!
 
 ## What’s left to do?
-Nearly EVERYTHING! :(
-- A fancy UI with current status of the service
+Some (minor) things
+- Maybe a better UI. The current isn't that fancy
 - start on boot / on bluetooth device connected ...
 - Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
