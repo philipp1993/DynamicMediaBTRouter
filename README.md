@@ -8,7 +8,7 @@ The Bluetooth channel should be opened when a playback is started and closed aft
 ### Why another app? There a several that do the same!
 No, not exactly! All other apps I've seen are not dynamic or (I suppose) use the isMusicActive() function which in fact isn't reliable.
 Therefore a use the Visualizer API to grab anonymized info from the global audiomix and can for sure determine if audio is played.
-The visualizer API function I use is only available since API Level 19 (KITKAT). For API Levels below I use the isMusicActive() function as well...
+The visualizer API function I use is only available since API Level 19 (Kitkat - Android 4.4). For API Levels below I use the isMusicActive() function as well...
 
 ### State based redirection
 The service is only startable if the bluetooth adapter is turned on, everything else wouldn't make sense would it?
