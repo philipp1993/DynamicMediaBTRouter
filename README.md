@@ -24,4 +24,4 @@ Send of the following intents
 Nearly EVERYTHING! :(
 - A fancy UI with current status of the service
 - start on boot / on bluetooth device connected ...
-- Adding a delay/pause while opening the BluethootSco -- currently audio is lost
+- Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
