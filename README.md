@@ -11,13 +11,14 @@ Therefore a use the Visualizer API to grab anonymized info from the global audio
 The visualizer API function I use is only available since API Level 19 (KITKAT). For API Levels below I use the isMusicActive() function as well...
 
 ### State based redirection
-The service is startable if the bluetooth adapter is turned on, everything else wouldn't make sense would it?
+The service is only startable if the bluetooth adapter is turned on, everything else wouldn't make sense would it?
 The redirection only starts if a bluetooth device is connected to the handsfree bluetooth profile. If the bluetooth profile isn't available anymore the redirection stops.
 
 ### Intent to start/stop the service
 It's really really simple!
-Send the intent net.philipp_koch.dynamicmediabtrouter.ON to start the service
-And send net.philipp_koch.dynamicmediabtrouter.OFF to stop the service
+Send of the following intents
+ - net.philipp_koch.dynamicmediabtrouter.ON | to start the service
+-  net.philipp_koch.dynamicmediabtrouter.OFF | to stop the service
 
 ## What’s left to do?
 Nearly EVERYTHING! :(
