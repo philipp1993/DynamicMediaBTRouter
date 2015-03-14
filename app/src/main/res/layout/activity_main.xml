@@ -1,10 +1,129 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
-    <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Start"  android:onClick="ButtonOn" />
-    <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Stop" android:onClick="ButtonOff" />
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:gravity="top|left"
+    android:id="@+id/mainLayout"
+    android:padding="16dp">
 
-</LinearLayout>
+    <TableLayout
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:id="@+id/table1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_BT">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bluetooth is: "
+                android:id="@+id/text_BT" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/text_BT_value" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_BTCon" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hands free is: "
+                android:id="@+id/text_BTDev" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/text_BTDev_value" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_Service" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service active: "
+                android:id="@+id/text_Service" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/text_Service_value" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_Audio" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Audio detected: "
+                android:id="@+id/text_Audio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/text_Audio_value" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_AboutHelp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aboutHelp"
+                android:id="@+id/text_AboutHelp"
+                android:autoLink="all"
+                android:linksClickable="true"
+                android:clickable="true"
+                android:onClick="goToHelpAbout"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="bottom|center"
+        android:id="@+id/ButtonWrapper"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true">
+
+        <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Start"  android:onClick="ButtonOn"
+            android:layout_gravity="bottom"
+            android:id="@+id/button_start"
+            android:layout_alignTop="@+id/button_stop"
+            android:layout_alignParentStart="true" />
+
+        <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Stop" android:onClick="ButtonOff"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/button_start"
+            android:id="@+id/button_stop" />
+    </LinearLayout>
+
+</RelativeLayout>
