@@ -41,18 +41,29 @@ public class RedirectorService extends Service {
         int btState = localBluetoothAdapter.getState();
         localGlobal = ((Global)getApplicationContext());
         localPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Log.d("BTService", "static pref: " + localPreferences.getBoolean("staticredirection", false));
+        boolean staticredirection = localPreferences.getBoolean("staticredirection", false);
+        Log.d("BTService", "static pref: " + staticredirection);
 
         if(btState == BluetoothAdapter.STATE_ON || btState == BluetoothAdapter.STATE_TURNING_ON) {
             Toast.makeText(this, "Service starting", Toast.LENGTH_LONG).show();
             keeprunning = true;
             localGlobal.Service = "YES";
-            localGlobal.Audio = "NO";
-            new Thread() {
-                public void run() {
-                    checkSound();
-                }
-            }.start();
+            if(staticredirection)
+            {
+                AudioManager localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                localGlobal.Audio = "no information - static redirection active";
+                localAudioManager.setBluetoothScoOn(true);
+                localAudioManager.startBluetoothSco();
+                localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+            }
+            else {
+                localGlobal.Audio = "NO";
+                new Thread() {
+                    public void run() {
+                        checkSound();
+                    }
+                }.start();
+            }
         }
         else
         {

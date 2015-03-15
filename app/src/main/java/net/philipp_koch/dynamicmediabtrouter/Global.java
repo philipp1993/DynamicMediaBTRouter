@@ -7,7 +7,7 @@ import java.lang.String;
  */
 public class Global extends Application {
 
-    public String Service, BT, BTDev, Audio;
+    public static String Service, BT, BTDev, Audio;
 
     @Override
     public void onCreate()
@@ -17,5 +17,10 @@ public class Global extends Application {
         BT = "";
         BTDev = "";
         Audio = "";
+    }
+
+    public static String getService()
+    {
+        return Service;
     }
 }

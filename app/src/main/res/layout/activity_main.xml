@@ -160,6 +160,13 @@
         android:layout_marginBottom="42dp"
             android:onClick="onCheckboxClicked" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Service:"
+            android:id="@+id/text_service"
+            android:layout_gravity="center_horizontal" />
+
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -171,14 +178,16 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toLeftOf="@+id/button_stop"
                 android:layout_toStartOf="@+id/button_stop"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:textColor="#00FF00" />
 
             <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Stop" android:onClick="ButtonOff"
                 android:layout_gravity="bottom"
                 android:id="@+id/button_stop"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textColor="#FF0000" />
         </TableRow>
 
     </LinearLayout>
