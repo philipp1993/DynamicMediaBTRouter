@@ -4,11 +4,13 @@ import java.lang.String;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothProfile;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.audiofx.Visualizer;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 import java.lang.Thread;
 import android.util.Log;
@@ -22,6 +24,7 @@ public class RedirectorService extends Service {
     private Global localGlobal;
     private boolean keeprunning = false;
     private static final int api = Build.VERSION.SDK_INT;
+    public SharedPreferences localPreferences;
 
     public IBinder onBind(Intent Intent) {
         return null;
@@ -37,6 +40,8 @@ public class RedirectorService extends Service {
         BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         int btState = localBluetoothAdapter.getState();
         localGlobal = ((Global)getApplicationContext());
+        localPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Log.d("BTService", "static pref: " + localPreferences.getBoolean("staticredirection", false));
 
         if(btState == BluetoothAdapter.STATE_ON || btState == BluetoothAdapter.STATE_TURNING_ON) {
             Toast.makeText(this, "Service starting", Toast.LENGTH_LONG).show();
