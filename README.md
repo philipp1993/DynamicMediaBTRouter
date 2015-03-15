@@ -45,5 +45,6 @@ I can't! The hands free profile isn't intended for high quality. Use A2DP instea
 ## What’s left to do?
 Some (minor) things
 - Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
+- Adding settings for better control of the service like static redirection
 - Maybe a better UI. The current isn't that fancy
 - start on boot / on bluetooth device connected _(could currently be done by Tasker)_
