@@ -2,6 +2,7 @@ package net.philipp_koch.dynamicmediabtrouter;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothProfile;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,10 +14,11 @@ import android.widget.TextView;
 import java.lang.Thread;
 import android.bluetooth.BluetoothAdapter;
 
+
 public class MainActivity extends Activity {
-    public TextView textService, textBT, textBTDev, textAudio;
+    public TextView textService, textBT, textBTDev, textAudio, textXposed;
     boolean refresh = false;
-    Global localGlobal;
+    public Global localGlobal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class MainActivity extends Activity {
         textBT = (TextView) findViewById(R.id.text_BT_value);
         textBTDev = (TextView) findViewById(R.id.text_BTDev_value);
         textAudio = (TextView) findViewById(R.id.text_Audio_value);
+        textXposed = (TextView) findViewById(R.id.text_Xposed_value);
+        localGlobal = (Global) getApplicationContext();
     }
 
     @Override
@@ -118,10 +122,9 @@ public class MainActivity extends Activity {
     private void updateGui()
     {
         final int api = Build.VERSION.SDK_INT;
-        localGlobal = ((Global) getApplicationContext());
+        BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         while(refresh)
         {
-            BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             int btState = localBluetoothAdapter.getState();
             if(btState == BluetoothAdapter.STATE_ON || btState == BluetoothAdapter.STATE_TURNING_ON)
             {
@@ -159,6 +162,7 @@ public class MainActivity extends Activity {
                     if(localGlobal.BTDev.equals("connected")){textBTDev.setTextColor(Color.GREEN);} else { if(localGlobal.BTDev.equals("disconnected")){textBTDev.setTextColor(Color.RED);} else {textBTDev.setTextColor(Color.BLACK);}}
                     textAudio.setText(localGlobal.Audio);
                     if(localGlobal.Audio.equals("NO")){textAudio.setTextColor(Color.RED);} else {textAudio.setTextColor(Color.GREEN);}
+                    if(textXposed.equals("inactive")){textXposed.setTextColor(Color.RED);} else {textXposed.setTextColor(Color.GREEN);}
                 }
             });
             android.os.SystemClock.sleep(300);

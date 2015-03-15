@@ -7,10 +7,15 @@ import java.lang.String;
  */
 public class Global extends Application {
 
-    public String Service = "NO";
-    public int Service_Color, BT_color, BTDev_Color, Audio_Color;
-    public String BT = "";
-    public String BTDev = "";
-    public String Audio = "";
+    public String Service, BT, BTDev, Audio;
 
+    @Override
+    public void onCreate()
+    {
+        super.onCreate();
+        Service = "NO";
+        BT = "";
+        BTDev = "";
+        Audio = "";
+    }
 }

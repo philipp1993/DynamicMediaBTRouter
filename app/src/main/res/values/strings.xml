@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Dynamic Media BT Router</string>
     <string name="aboutHelp"><a href="localhost">About / Help</a></string>
+    <string name="xposed">inactive</string>
 </resources>
