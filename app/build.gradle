@@ -8,7 +8,7 @@ android {
         applicationId "net.philipp_koch.dynamicmediabtrouter"
         minSdkVersion 11
         targetSdkVersion 19
-        versionCode 2
+        versionCode 3
         versionName "0.03"
     }
     buildTypes {
