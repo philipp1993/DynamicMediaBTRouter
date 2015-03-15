@@ -14,6 +14,12 @@ The visualizer API function I use is only available since API Level 19 (Kitkat -
 The service is only startable if the bluetooth adapter is turned on, everything else wouldn't make sense would it?
 The redirection only starts if a bluetooth device is connected to the hands free bluetooth profile. If the hands free connection isn't available anymore the redirection stops.
 
+**Static Redirecting**
+If you choose this option the audio redirection will start as soon as you start and the service and only stops with the service. No audio information is analyzed.
+
+If you choose the reconnect after call option the service restarts itself after a voice call is terminated (the telephone app has priority over the sco channel).
+The service also restarts if you end the "call" for media redirection. This option is only available in combination with static redirection.
+
 ### Intent to start/stop the service
 It's really really simple!
 Send of the following intents
@@ -45,6 +51,5 @@ I can't! The hands free profile isn't intended for high quality. Use A2DP instea
 ## What’s left to do?
 Some (minor) things
 - Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
-- Adding settings for better control of the service like static redirection
 - Maybe a better UI. The current isn't that fancy
 - start on boot / on bluetooth device connected _(could currently be done by Tasker)_
