@@ -22,7 +22,8 @@ Send of the following intents
 
 ### Requirements
 - An Android device with the minimum API Level 11 (Honeycomb - Android 3.0)
-    - API Level 18 (Jelly Bean - Android 4.3) is preferred because of different handling of the bluetooth sco stream. 
+    - API Level 18 (Jelly Bean - Android 4.3) for a raw bluetooth stream. Lower version may require you to accept the "call"
+    - API Level 19 (Kitkit - Android 4.4) for audio recognition via the visualizer API.
 - A bluetooth device which supports the hands free profile (usually headsets or car speakerphones)
 - No task managers! They're crap and nothing else! They kill the background service so don't complain!
 - _optional_: Xposed framework 54 - I hook the audio playback function of several navigation apps and add a delay resulting that the service has enough time to open the channel so no information is lost
