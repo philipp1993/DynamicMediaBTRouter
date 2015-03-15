@@ -25,8 +25,8 @@ Send of the following intents
     - API Level 18 (Jelly Bean - Android 4.3) is preferred because of different handling of the bluetooth sco stream. 
 - A bluetooth device which supports the hands free profile (usually headsets or car speakerphones)
 - No task managers! They're crap and nothing else! They kill the background service so don't complain!
-- _optional_: Xposed framework 54 - I hook the audio playback function of several navigation apps and a delay resulting the service has enough time to open the channel and no information is lost
-    - currently supported apps
+- _optional_: Xposed framework 54 - I hook the audio playback function of several navigation apps and add a delay resulting that the service has enough time to open the channel so no information is lost
+    - **currently supported apps:**
     - _none. work in progress_
 
 #### Working as designed
@@ -45,4 +45,4 @@ I can't! The hands free profile isn't intended for high quality. Use A2DP instea
 Some (minor) things
 - Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
 - Maybe a better UI. The current isn't that fancy
-- start on boot / on bluetooth device connected (could currently be done by Tasker)
+- start on boot / on bluetooth device connected _(could currently be done by Tasker)_
