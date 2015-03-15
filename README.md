@@ -37,7 +37,7 @@ Send of the following intents
     - **currently supported apps:**
     - _none. work in progress_
 
-#### Working as designed
+#### Working as designed (dynamic mode)
 If you end the "call" the redirection doesn't stop and audio is routed to nowhere.
 Because the app was intended for navigation apps this is a useful design:
 
