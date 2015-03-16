@@ -138,7 +138,7 @@ public class RedirectorService extends Service {
                     localAudioManager.setBluetoothScoOn(true);
                     localAudioManager.startBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
-                    android.os.SystemClock.sleep(5000); //Route to BT Headset will exist min. 5 seconds ...
+                    android.os.SystemClock.sleep(3000); //Route to BT Headset will exist min. 3 seconds ...
                 }
                 if (!localAudioManager.isMusicActive() && wasPlayingBefore) {
                     //output (temporary) gone

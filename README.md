@@ -50,6 +50,11 @@ If you use the app to redirect music for an ongoing time and you end the "call" 
 I can't! The hands free profile isn't intended for high quality. Use A2DP instead!
 
 ## What’s left to do?
-Some (minor) things
-- Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
-- start on boot / on bluetooth device connected _(could currently be done by Tasker)_
+Some things
+- Preferences for static redirecting a sometimes lost
+- Adding a delay/pause while opening the bluetooth channel (xposed for specific apps) -- currently audio is lost
+    - in general
+- Service stopping if bluetooth is turned off
+    - _Setting:_ stop service if device disconnects
+        - perhaps with service restart option
+- start on boot / on bluetooth device connected _(could currently be done by Tasker and the intents)_
