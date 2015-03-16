@@ -33,7 +33,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="This module hooks the playback method of various navigation apps to gain some time for the service to switch to bluetooth. Only active if service is running!" />
+            android:value="@string/manifest_xposed" />
         <meta-data
             android:name="xposedminversion"
             android:value="54" />

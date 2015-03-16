@@ -11,97 +11,103 @@
         android:baselineAligned="false"
         android:orientation="vertical">
 
-        <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/row_BT">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bluetooth is: "
-            android:id="@+id/text_BT" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/text_BT_value" />
-    </TableRow>
-
-        <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/row_BTCon" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hands free is: "
-            android:id="@+id/text_BTDev" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/text_BTDev_value" />
-    </TableRow>
-
-        <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/row_Service" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Service active: "
-            android:id="@+id/text_Service" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/text_Service_value" />
-    </TableRow>
-
-        <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/row_Audio" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Audio detected: "
-            android:id="@+id/text_Audio" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/text_Audio_value" />
-
-    </TableRow>
-
-        <TableRow
+        <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/row_Xposed" >
+            android:id="@+id/table_status">
+
+            <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_BT">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Xposed module: "
-                android:id="@+id/text_Xposed" />
+                android:text="@string/row_bt"
+                android:id="@+id/text_BT" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/xposed"
-                android:id="@+id/text_Xposed_value" />
+                android:text=""
+                android:id="@+id/text_BT_value" />
+        </TableRow>
+
+            <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_BTCon" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/row_hf"
+                android:id="@+id/text_BTDev" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/text_BTDev_value" />
+        </TableRow>
+
+            <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_Service" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/row_service"
+                android:id="@+id/text_Service" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/text_Service_value" />
+        </TableRow>
+
+            <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/row_Audio" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/row_audio"
+                android:id="@+id/text_Audio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/text_Audio_value" />
 
         </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/row_Xposed" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/row_xposed"
+                    android:id="@+id/text_Xposed" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/row_xposed_value"
+                    android:id="@+id/text_Xposed_value" />
+
+            </TableRow>
+        </TableLayout>
 
         <TableRow
             android:layout_width="fill_parent"
@@ -125,7 +131,7 @@
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Media Volume"
+        android:text="@string/textview_mediavolume"
         android:id="@+id/text_Volume_Media"
             android:paddingTop="50dp"
             android:layout_gravity="center_horizontal" />
@@ -139,23 +145,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Changes become active on next service start.\n\nThe reconnect option is only needed if static redirecting is used.\n"
+            android:text="@string/textview_static_help"
             android:id="@+id/textView"
-            android:layout_alignTop="@+id/button_start"
-            android:layout_centerHorizontal="true"
             android:paddingTop="25dp" />
 
         <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="static redirecting"
+        android:text="@string/button_static"
         android:id="@+id/check_static"
             android:onClick="onCheckboxClicked" />
 
         <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="reconnect after call"
+        android:text="@string/button_call"
         android:id="@+id/check_call"
         android:layout_marginBottom="42dp"
             android:onClick="onCheckboxClicked" />
@@ -163,7 +167,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Service:"
+            android:text=""
             android:id="@+id/text_service"
             android:layout_gravity="center_horizontal" />
 
@@ -175,18 +179,11 @@
             <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Start"  android:onClick="ButtonOn"
                 android:layout_gravity="bottom"
                 android:id="@+id/button_start"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/button_stop"
-                android:layout_toStartOf="@+id/button_stop"
-                android:layout_centerHorizontal="true"
                 android:textColor="#00FF00" />
 
             <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Stop" android:onClick="ButtonOff"
                 android:layout_gravity="bottom"
                 android:id="@+id/button_stop"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:textColor="#FF0000" />
         </TableRow>
 

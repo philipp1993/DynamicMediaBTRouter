@@ -21,7 +21,6 @@ import android.util.Log;
 public class RedirectorService extends Service {
 
 
-    private Global localGlobal;
     private boolean keeprunning = false;
     private static final int api = Build.VERSION.SDK_INT;
     public SharedPreferences localPreferences;
@@ -39,7 +38,6 @@ public class RedirectorService extends Service {
     public void onCreate() {
         BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         int btState = localBluetoothAdapter.getState();
-        localGlobal = ((Global)getApplicationContext());
         localPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean staticredirection = localPreferences.getBoolean("staticredirection", false);
         Log.d("BTService", "static pref: " + staticredirection);
@@ -47,17 +45,17 @@ public class RedirectorService extends Service {
         if(btState == BluetoothAdapter.STATE_ON || btState == BluetoothAdapter.STATE_TURNING_ON) {
             Toast.makeText(this, "Service starting", Toast.LENGTH_LONG).show();
             keeprunning = true;
-            localGlobal.Service = "YES";
+            Global.setService("YES");
             if(staticredirection)
             {
                 AudioManager localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                localGlobal.Audio = "no information - static redirection active";
+                Global.setAudio("no information - static redirection active");
                 localAudioManager.setBluetoothScoOn(true);
                 localAudioManager.startBluetoothSco();
                 localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
             }
             else {
-                localGlobal.Audio = "NO";
+                Global.setAudio("NO");
                 new Thread() {
                     public void run() {
                         checkSound();
@@ -75,8 +73,8 @@ public class RedirectorService extends Service {
     @Override
     public void onDestroy() {
         keeprunning = false;
-        localGlobal.Audio = "";
-        localGlobal.Service = "NO";
+        Global.setAudio("");
+        Global.setService("NO");
         AudioManager localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         localAudioManager.setBluetoothScoOn(false);
         localAudioManager.stopBluetoothSco();
@@ -105,7 +103,7 @@ public class RedirectorService extends Service {
                     //There is some audio output
                     wasPlayingBefore = true;
                     headsetConnectedBefore = true;
-                    localGlobal.Audio="YES";
+                    Global.setAudio("YES");
                     localAudioManager.setBluetoothScoOn(true);
                     localAudioManager.startBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -120,7 +118,7 @@ public class RedirectorService extends Service {
                     //Audio didn't get back in last 2 seconds...
                     wasPlayingBefore = false;
                     headsetConnectedBefore = false;
-                    localGlobal.Audio="NO";
+                    Global.setAudio("NO");
                     localAudioManager.setBluetoothScoOn(false);
                     localAudioManager.stopBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_NORMAL);

@@ -14,7 +14,7 @@ The visualizer API function I use is only available since API Level 19 (Kitkat -
 The service is only startable if the bluetooth adapter is turned on, everything else wouldn't make sense would it?
 The redirection only starts if a bluetooth device is connected to the hands free bluetooth profile. If the hands free connection isn't available anymore the redirection stops.
 
-**Static Redirecting**
+**Static redirection**
 
 If you choose this option the audio redirection will start as soon as you start the service and only stops with the service. No audio information is analyzed.
 
