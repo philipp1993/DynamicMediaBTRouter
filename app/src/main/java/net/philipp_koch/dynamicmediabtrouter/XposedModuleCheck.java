@@ -24,6 +24,5 @@ public class XposedModuleCheck implements IXposedHookZygoteInit, IXposedHookInit
             XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);
            resparam.res.setReplacement(resparam.packageName, "string", "row_xposed_value", "active");
         }
-
     }
 }

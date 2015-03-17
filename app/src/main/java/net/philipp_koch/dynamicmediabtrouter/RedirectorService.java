@@ -100,11 +100,12 @@ public class RedirectorService extends Service {
             {
                 localVisualizer.getMeasurementPeakRms(localPeak);//get the current audio peak -9600 = silent, 0 = MAX output
                 btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
-                if ((localPeak.mPeak > -8500 || Global.getXposedRequest()) && !wasPlayingBefore && btHeadsetState == BluetoothProfile.STATE_CONNECTED) {
+                if ((localPeak.mPeak > -8500 || Global.getXposedRequestON()) && !wasPlayingBefore && btHeadsetState == BluetoothProfile.STATE_CONNECTED) {
                     //There is some audio output
                     wasPlayingBefore = true;
                     headsetConnectedBefore = true;
                     Global.setAudio("YES");
+                    Global.setXposedRequestON(false);
                     localAudioManager.setBluetoothScoOn(true);
                     localAudioManager.startBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -115,8 +116,9 @@ public class RedirectorService extends Service {
                     android.os.SystemClock.sleep(2000);//... plus this 2 seconds
                     localVisualizer.getMeasurementPeakRms(localPeak); //check again
                 }
-                if ((localPeak.mPeak <= -8500 && wasPlayingBefore) || (headsetConnectedBefore && btHeadsetState == BluetoothProfile.STATE_DISCONNECTED)) {
+                if ((localPeak.mPeak <= -8500 && wasPlayingBefore) || (headsetConnectedBefore && btHeadsetState == BluetoothProfile.STATE_DISCONNECTED) || Global.getXposedRequestOFF()) {
                     //Audio didn't get back in last 2 seconds...
+                    Global.setXposedRequestOFF(false);
                     wasPlayingBefore = false;
                     headsetConnectedBefore = false;
                     Global.setAudio("NO");
@@ -139,8 +141,9 @@ public class RedirectorService extends Service {
                 {
                     btHeadsetState = 2; //if api call isn't available we will ignore
                 }
-                if ((localAudioManager.isMusicActive() || Global.getXposedRequest()) && !wasPlayingBefore && btHeadsetState == 2) {
+                if ((localAudioManager.isMusicActive() || Global.getXposedRequestON()) && !wasPlayingBefore && btHeadsetState == 2) {
                     //There is some audio output
+                    Global.setXposedRequestON(false);
                     wasPlayingBefore = true;
                     headsetConnectedBefore = true;
                     localAudioManager.setBluetoothScoOn(true);
@@ -152,8 +155,9 @@ public class RedirectorService extends Service {
                     //output (temporary) gone
                     android.os.SystemClock.sleep(2000);//... plus this 2 seconds
                 }
-                if ((!localAudioManager.isMusicActive() && wasPlayingBefore) || (headsetConnectedBefore && btHeadsetState == BluetoothProfile.STATE_DISCONNECTED)) {
+                if ((!localAudioManager.isMusicActive() && wasPlayingBefore) || (headsetConnectedBefore && btHeadsetState == BluetoothProfile.STATE_DISCONNECTED) || Global.getXposedRequestOFF()) {
                     //Audio didn't get back in last 2 seconds...
+                    Global.setXposedRequestOFF(false);
                     wasPlayingBefore = false;
                     headsetConnectedBefore = false;
                     localAudioManager.setBluetoothScoOn(false);

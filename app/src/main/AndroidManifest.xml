@@ -20,6 +20,8 @@
             <intent-filter>
                 <action android:name="net.philipp_koch.dynamicmediabtrouter.ON"/>
                 <action android:name="net.philipp_koch.dynamicmediabtrouter.OFF"/>
+                <action android:name="net.philipp_koch.dynamicmediabtrouter.XRequestON"/>
+                <action android:name="net.philipp_koch.dynamicmediabtrouter.XRequestOFF"/>
             </intent-filter>
         </receiver>
         <receiver android:label="@string/app_name" android:name="SCOStatereceiver">

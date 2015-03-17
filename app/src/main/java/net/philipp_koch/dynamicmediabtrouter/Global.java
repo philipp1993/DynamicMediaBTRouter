@@ -8,7 +8,8 @@ import java.lang.String;
 public class Global extends Application {
 
     private static String Service, BT, BTDev, Audio;
-    private static boolean XposedRequest=false;
+    private static boolean XposedRequestON=false;
+    private static boolean XposedRequestOFF=false;
 
     @Override
     public void onCreate()
@@ -41,7 +42,9 @@ public class Global extends Application {
         return Audio;
     }
 
-    public static boolean getXposedRequest() { return XposedRequest;}
+    public static boolean getXposedRequestON() { return XposedRequestON;}
+
+    public static boolean getXposedRequestOFF() { return XposedRequestOFF;}
 
     public static void setService(String str)
     {
@@ -63,5 +66,7 @@ public class Global extends Application {
         Audio = str;
     }
 
-    public static void setXposedRequest(Boolean bool) { XposedRequest = bool;}
+    public static void setXposedRequestON(Boolean bool) { XposedRequestON = bool;}
+
+    public static void setXposedRequestOFF(Boolean bool) { XposedRequestOFF = bool;}
 }

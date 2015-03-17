@@ -21,5 +21,15 @@ public class IntentReceiver extends BroadcastReceiver {
             paramContext.stopService(new Intent(paramContext, RedirectorService.class));
             return;
         }
+        if (paramIntent.getAction().equals("net.philipp_koch.dynamicmediabtrouter.XRequestON")) {
+            Toast.makeText(paramContext, "Xposed: On", Toast.LENGTH_LONG).show();
+            Global.setXposedRequestON(true);
+            return;
+        }
+        if (paramIntent.getAction().equals("net.philipp_koch.dynamicmediabtrouter.XRequestOFF")) {
+            Toast.makeText(paramContext, "Xposed: Off", Toast.LENGTH_LONG).show();
+            paramContext.stopService(new Intent(paramContext, RedirectorService.class));
+            return;
+        }
     }
 }

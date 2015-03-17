@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
@@ -179,6 +180,7 @@ public class MainActivity extends Activity {
                 public void run() {
                     String tempstr;
 
+                    Log.d("MainActivity","XposedReguest: " + Global.getXposedRequestON());
                     tempstr=Global.getService();
                     textService.setText(tempstr);
                     if(tempstr.equals("YES")){textService.setTextColor(Color.GREEN);} else {textService.setTextColor(Color.RED);}
