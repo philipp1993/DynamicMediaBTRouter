@@ -8,6 +8,7 @@ import java.lang.String;
 public class Global extends Application {
 
     private static String Service, BT, BTDev, Audio;
+    private static boolean XposedRequest=false;
 
     @Override
     public void onCreate()
@@ -17,6 +18,7 @@ public class Global extends Application {
         BT = "";
         BTDev = "";
         Audio = "";
+
     }
 
     public static String getService()
@@ -39,6 +41,8 @@ public class Global extends Application {
         return Audio;
     }
 
+    public static boolean getXposedRequest() { return XposedRequest;}
+
     public static void setService(String str)
     {
         Service = str;
@@ -58,4 +62,6 @@ public class Global extends Application {
     {
         Audio = str;
     }
+
+    public static void setXposedRequest(Boolean bool) { XposedRequest = bool;}
 }

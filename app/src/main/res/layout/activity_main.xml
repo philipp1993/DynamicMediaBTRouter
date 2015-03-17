@@ -133,7 +133,7 @@
         android:layout_height="wrap_content"
         android:text="@string/textview_mediavolume"
         android:id="@+id/text_Volume_Media"
-            android:paddingTop="50dp"
+            android:paddingTop="25dp"
             android:layout_gravity="center_horizontal" />
 
         <SeekBar

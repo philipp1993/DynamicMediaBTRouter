@@ -52,8 +52,8 @@ I can't! The hands free profile isn't intended for high quality. Use A2DP instea
 ## What’s left to do?
 Some things
 - Preferences for static redirecting a sometimes lost
-- Adding a delay/pause while opening the bluetooth channel (xposed for specific apps) -- currently audio is lost
-    - in general
+- (xposed) Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
+    - in general without xposed
 - Service stopping if bluetooth is turned off
     - _Setting:_ stop service if device disconnects
         - perhaps with service restart option

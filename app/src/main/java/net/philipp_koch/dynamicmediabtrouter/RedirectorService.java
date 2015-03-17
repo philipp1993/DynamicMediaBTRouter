@@ -88,6 +88,7 @@ public class RedirectorService extends Service {
         boolean wasPlayingBefore = false;
         boolean headsetConnectedBefore = false;
         BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        int btHeadsetState;
 
         if (api >= 19) {
             Visualizer localVisualizer = new Visualizer(0);
@@ -98,8 +99,8 @@ public class RedirectorService extends Service {
             while (keeprunning) //Loop to detect changes on the Media Audio Stream
             {
                 localVisualizer.getMeasurementPeakRms(localPeak);//get the current audio peak -9600 = silent, 0 = MAX output
-                int btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
-                if (localPeak.mPeak > -8500 && !wasPlayingBefore && btHeadsetState == BluetoothProfile.STATE_CONNECTED) {
+                btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
+                if ((localPeak.mPeak > -8500 || Global.getXposedRequest()) && !wasPlayingBefore && btHeadsetState == BluetoothProfile.STATE_CONNECTED) {
                     //There is some audio output
                     wasPlayingBefore = true;
                     headsetConnectedBefore = true;
@@ -130,8 +131,15 @@ public class RedirectorService extends Service {
         } else {
             while (keeprunning) {
                 //No KITKAT :(
-                int btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
-                if (localAudioManager.isMusicActive() && btHeadsetState == BluetoothProfile.STATE_CONNECTED) {
+                if(api >= 14)
+                {
+                    btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
+                }
+                else
+                {
+                    btHeadsetState = 2; //if api call isn't available we will ignore
+                }
+                if ((localAudioManager.isMusicActive() || Global.getXposedRequest()) && !wasPlayingBefore && btHeadsetState == 2) {
                     //There is some audio output
                     wasPlayingBefore = true;
                     headsetConnectedBefore = true;
