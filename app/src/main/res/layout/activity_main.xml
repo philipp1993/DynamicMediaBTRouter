@@ -161,20 +161,13 @@
         android:layout_height="wrap_content"
         android:text="@string/button_call"
         android:id="@+id/check_call"
-        android:layout_marginBottom="42dp"
             android:onClick="onCheckboxClicked" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/text_service"
-            android:layout_gravity="center_horizontal" />
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="20dp">
 
             <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Start"  android:onClick="ButtonOn"
                 android:layout_gravity="bottom"

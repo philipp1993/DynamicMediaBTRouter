@@ -32,7 +32,7 @@
         <service android:label="RedirectorService" android:name="RedirectorService"/>
         <meta-data
             android:name="xposedmodule"
-            android:value="true" />
+            android:value="false" />
         <meta-data
             android:name="xposeddescription"
             android:value="@string/manifest_xposed" />

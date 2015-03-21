@@ -12,6 +12,6 @@
     <string name="button_static">static redirecting</string>
     <string name="button_call">reconnect after call</string>
     <string name="textview_service">Service:</string>
-    <string name="manifest_xposed">Hooks the playback method of various navigation apps to gain some time for the dynamic service to switch to bluetooth. Only active if service is running!</string>
+    <string name="manifest_xposed">Hooks the playback method of various navigation apps to gain some time for the dynamic service to switch to bluetooth. Currently support apps: NONE! Work in progress</string>
 
 </resources>

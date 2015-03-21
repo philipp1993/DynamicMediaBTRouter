@@ -133,14 +133,8 @@ public class RedirectorService extends Service {
         } else {
             while (keeprunning) {
                 //No KITKAT :(
-                if(api >= 14)
-                {
-                    btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
-                }
-                else
-                {
-                    btHeadsetState = 2; //if api call isn't available we will ignore
-                }
+                btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
+
                 if ((localAudioManager.isMusicActive() || Global.getXposedRequestON()) && !wasPlayingBefore && btHeadsetState == 2) {
                     //There is some audio output
                     Global.setXposedRequestON(false);
