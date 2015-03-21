@@ -30,7 +30,7 @@
             </intent-filter>
         </receiver>
         <service android:label="RedirectorService" android:name="RedirectorService"/>
-        <meta-data
+        <!--<meta-data
             android:name="xposedmodule"
             android:value="false" />
         <meta-data
@@ -38,6 +38,6 @@
             android:value="@string/manifest_xposed" />
         <meta-data
             android:name="xposedminversion"
-            android:value="54" />
+            android:value="54" />-->
     </application>
 </manifest>

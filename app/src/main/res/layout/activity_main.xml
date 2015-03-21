@@ -88,7 +88,7 @@
                 android:id="@+id/text_Audio_value" />
 
         </TableRow>
-
+<!--
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -106,7 +106,7 @@
                     android:text="@string/row_xposed_value"
                     android:id="@+id/text_Xposed_value" />
 
-            </TableRow>
+            </TableRow>-->
         </TableLayout>
 
         <TableRow

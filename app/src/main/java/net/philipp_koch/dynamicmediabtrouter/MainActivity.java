@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
         textBT = (TextView) findViewById(R.id.text_BT_value);
         textBTDev = (TextView) findViewById(R.id.text_BTDev_value);
         textAudio = (TextView) findViewById(R.id.text_Audio_value);
-        textXposed = (TextView) findViewById(R.id.text_Xposed_value);
+        //textXposed = (TextView) findViewById(R.id.text_Xposed_value);
 
         localGlobal = (Global) getApplicationContext();
         localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
@@ -197,7 +197,7 @@ public class MainActivity extends Activity {
                     textAudio.setText(tempstr);
                     if(tempstr.equals("NO")){textAudio.setTextColor(Color.RED);} else { if(tempstr.equals("YES")){textAudio.setTextColor(Color.GREEN);} else {textAudio.setTextColor(Color.WHITE);}}
 
-                    if(textXposed.getText().equals("inactive")){textXposed.setTextColor(Color.RED);} else {textXposed.setTextColor(Color.GREEN);}
+                    //if(textXposed.getText().equals("inactive")){textXposed.setTextColor(Color.RED);} else {textXposed.setTextColor(Color.GREEN);}
 
                     SeekBarMedia.setProgress(localAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
                 }
