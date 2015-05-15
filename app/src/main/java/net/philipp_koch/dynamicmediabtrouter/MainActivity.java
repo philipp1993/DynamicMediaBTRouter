@@ -23,7 +23,6 @@ import android.bluetooth.BluetoothAdapter;
 public class MainActivity extends Activity {
     public TextView textService, textBT, textBTDev, textAudio, textXposed;
     boolean refresh = false;
-    public Global localGlobal;
     private AudioManager localAudioManager;
     public SeekBar SeekBarMedia;
     public SharedPreferences localPreferences;
@@ -33,7 +32,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CheckBox staticRedirect, afterCall;
+        CheckBox staticRedirect, afterCall, autoStart, autoStop;
 
         textService = (TextView) findViewById(R.id.text_Service_value);
         textBT = (TextView) findViewById(R.id.text_BT_value);
@@ -41,7 +40,6 @@ public class MainActivity extends Activity {
         textAudio = (TextView) findViewById(R.id.text_Audio_value);
         //textXposed = (TextView) findViewById(R.id.text_Xposed_value);
 
-        localGlobal = (Global) getApplicationContext();
         localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         SeekBarMedia = (SeekBar)findViewById(R.id.Volume_Media);
@@ -52,8 +50,15 @@ public class MainActivity extends Activity {
 
         staticRedirect =(CheckBox)findViewById(R.id.check_static);
         staticRedirect.setChecked(localPreferences.getBoolean("staticredirection", false));
+
         afterCall =(CheckBox)findViewById(R.id.check_call);
         afterCall.setChecked(localPreferences.getBoolean("aftercall", false));
+
+        autoStart =(CheckBox)findViewById(R.id.check_start);
+        autoStart.setChecked(localPreferences.getBoolean("autoStart", false));
+
+        autoStop =(CheckBox)findViewById(R.id.check_stop);
+        autoStop.setChecked(localPreferences.getBoolean("autoStop", true));
     }
 
     @Override
@@ -115,13 +120,13 @@ public class MainActivity extends Activity {
 
     public void Off()
     {
-        Toast.makeText(this, "Action: Off", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Action: Off", Toast.LENGTH_LONG).show();
         stopService(new Intent(this, RedirectorService.class));
     }
 
     public void On()
     {
-        Toast.makeText(this, "Action: On", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Action: On", Toast.LENGTH_LONG).show();
         startService(new Intent(this, RedirectorService.class));
     }
 
@@ -135,7 +140,7 @@ public class MainActivity extends Activity {
         On();
     }
 
-    public void goToHelpAbout (View paramView) { goToUrl ( "http://philipp-koch.net/btrouter.php"); }
+    public void goToHelpAbout (View paramView) { goToUrl("http://philipp-koch.net/btrouter.php"); }
 
     private void goToUrl (String url) {
         Uri uriUrl = Uri.parse(url);
@@ -145,57 +150,58 @@ public class MainActivity extends Activity {
 
     private void updateGui()
     {
-        final int api = Build.VERSION.SDK_INT;
         BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        int btState = localBluetoothAdapter.getState();
+        if(btState == BluetoothAdapter.STATE_ON || btState == BluetoothAdapter.STATE_TURNING_ON)
+        {
+            Global.setBT(getString(R.string.on));
+            Global.setBT_Color(Color.GREEN);
+
+            int btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
+            switch (btHeadsetState){
+                case BluetoothProfile.STATE_CONNECTING:
+                    Global.setBTDev(getString(R.string.connecting));
+                    Global.setBTDev_Color(Color.YELLOW);
+                    break;
+
+                case BluetoothProfile.STATE_CONNECTED:
+                    Global.setBTDev(getString(R.string.connected));
+                    Global.setBTDev_Color(Color.GREEN);
+                    break;
+
+                case BluetoothProfile.STATE_DISCONNECTED:
+                case BluetoothProfile.STATE_DISCONNECTING:
+                    Global.setBTDev(getString(R.string.disconnected));
+                    Global.setBTDev_Color(Color.RED);
+                    break;
+            }
+        }
+        else
+        {
+            Global.setBT(getString(R.string.off));
+            Global.setBT_Color(Color.RED);
+            Global.setBTDev("");
+        }
+
         while(refresh)
         {
-            int btState = localBluetoothAdapter.getState();
-            if(btState == BluetoothAdapter.STATE_ON || btState == BluetoothAdapter.STATE_TURNING_ON)
-            {
-                Global.setBT("ON");
-                if (api >= 14)
-                {
-                    int btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
-                    if(btHeadsetState == BluetoothProfile.STATE_CONNECTED)
-                    {
-                        Global.setBTDev("connected");
-                    }
-                    else
-                    {
-                        Global.setBTDev("disconnected");
-                    }
-                }
-                else
-                {
-                    Global.setBTDev("connection not possible to determine");
-                }
-            }
-            else
-            {
-                Global.setBT("OFF");
-                Global.setBTDev("");
-            }
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    String tempstr;
 
-                    Log.d("MainActivity","XposedReguest: " + Global.getXposedRequestON());
-                    tempstr=Global.getService();
-                    textService.setText(tempstr);
-                    if(tempstr.equals("YES")){textService.setTextColor(Color.GREEN);} else {textService.setTextColor(Color.RED);}
+                    //Log.d("MainActivity","XposedReguest: " + Global.getXposedRequestON());
+                    textService.setText(Global.getService());
+                    textService.setTextColor(Global.getService_Color());
 
-                    tempstr=Global.getBT();
-                    textBT.setText(tempstr);
-                    if(tempstr.equals("ON")){textBT.setTextColor(Color.GREEN);} else {textBT.setTextColor(Color.RED);}
+                    textBT.setText(Global.getBT());
+                    textBT.setTextColor(Global.getBT_Color());
 
-                    tempstr=Global.getBTDev();
-                    textBTDev.setText(tempstr);
-                    if(tempstr.equals("connected")){textBTDev.setTextColor(Color.GREEN);} else { if(tempstr.equals("disconnected")){textBTDev.setTextColor(Color.RED);} else {textBTDev.setTextColor(Color.WHITE);}}
+                    textBTDev.setText(Global.getBTDev());
+                    textBTDev.setTextColor(Global.getBTDev_Color());
 
-                    tempstr=Global.getAudio();
-                    textAudio.setText(tempstr);
-                    if(tempstr.equals("NO")){textAudio.setTextColor(Color.RED);} else { if(tempstr.equals("YES")){textAudio.setTextColor(Color.GREEN);} else {textAudio.setTextColor(Color.WHITE);}}
+                    textAudio.setText(Global.getAudio());
+                    textAudio.setTextColor(Global.getAudio_Color());
 
                     //if(textXposed.getText().equals("inactive")){textXposed.setTextColor(Color.RED);} else {textXposed.setTextColor(Color.GREEN);}
 
@@ -244,6 +250,26 @@ public class MainActivity extends Activity {
                 else
                 {
                     localEditor.putBoolean("aftercall", false);
+                }
+                break;
+            case R.id.check_start:
+                if (checked)
+                {
+                    localEditor.putBoolean("autoStart", true);
+                }
+                else
+                {
+                    localEditor.putBoolean("autoStart", false);
+                }
+                break;
+            case R.id.check_stop:
+                if(checked)
+                {
+                    localEditor.putBoolean("autoStop", true);
+                }
+                else
+                {
+                    localEditor.putBoolean("autoStop", false);
                 }
                 break;
         }

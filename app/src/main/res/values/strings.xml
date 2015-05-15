@@ -8,10 +8,22 @@
     <string name="row_audio">Audio detected:&#160;</string>
     <string name="row_xposed">Xposed module:&#160;</string>
     <string name="textview_mediavolume">Media Volume</string>
-    <string name="textview_static_help">Changes become active on next service start.\n\nThe reconnect option is only needed if static redirecting is used.\n</string>
+    <string name="textview_static_help">Changes become active on next service start.\n\nThe reconnect option is only used together with static redirecting is used.\n</string>
     <string name="button_static">static redirecting</string>
     <string name="button_call">reconnect after call</string>
     <string name="textview_service">Service:</string>
     <string name="manifest_xposed">Hooks the playback method of various navigation apps to gain some time for the dynamic service to switch to bluetooth. Currently support apps: NONE! Work in progress</string>
-
+    <string name="button_start">Start on device connecting</string>
+    <string name="button_stop">Stop on device disconnecting</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="connected">connected</string>
+    <string name="disconnected">disconnected</string>
+    <string name="connecting">connecting</string>
+    <string name="noInformation">no information - static redirection active</string>
+    <string name="TurnBTon">Connect Headset first</string>
+    <string name="starting">Service starting</string>
+    <string name="stopped">Service stopped</string>
 </resources>

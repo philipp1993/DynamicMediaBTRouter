@@ -5,6 +5,7 @@ import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothProfile;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -14,12 +15,10 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 import java.lang.Thread;
 import android.util.Log;
-
 /**
  * Created by Philipp on 12.03.2015.
  */
 public class RedirectorService extends Service {
-
 
     private boolean keeprunning = false;
     private static final int api = Build.VERSION.SDK_INT;
@@ -37,25 +36,29 @@ public class RedirectorService extends Service {
     @Override
     public void onCreate() {
         BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        int btState = localBluetoothAdapter.getState();
+        int btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
         localPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean staticredirection = localPreferences.getBoolean("staticredirection", false);
         Log.d("BTService", "static pref: " + staticredirection);
 
-        if(btState == BluetoothAdapter.STATE_ON || btState == BluetoothAdapter.STATE_TURNING_ON) {
-            Toast.makeText(this, "Service starting", Toast.LENGTH_LONG).show();
+        if(btHeadsetState == BluetoothAdapter.STATE_ON) {
+            Toast.makeText(this, getString(R.string.starting), Toast.LENGTH_LONG).show();
             keeprunning = true;
-            Global.setService("YES");
+
+            Global.setService(getString(R.string.yes));
+            Global.setService_Color(Color.GREEN);
             if(staticredirection)
             {
                 AudioManager localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                Global.setAudio("no information - static redirection active");
+                Global.setAudio(getString(R.string.noInformation));
+                Global.setAudio_Color(Color.WHITE);
                 localAudioManager.setBluetoothScoOn(true);
                 localAudioManager.startBluetoothSco();
                 localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
             }
             else {
-                Global.setAudio("NO");
+                Global.setAudio(getString(R.string.no));
+                Global.setAudio_Color(Color.RED);
                 new Thread() {
                     public void run() {
                         checkSound();
@@ -65,7 +68,7 @@ public class RedirectorService extends Service {
         }
         else
         {
-            Toast.makeText(this, "Turn on Bluetooth first", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.TurnBTon), Toast.LENGTH_LONG).show();
             stopSelf();
         }
     }
@@ -74,12 +77,13 @@ public class RedirectorService extends Service {
     public void onDestroy() {
         keeprunning = false;
         Global.setAudio("");
-        Global.setService("NO");
+        Global.setService(getString(R.string.no));
+        Global.setService_Color(Color.RED);
         AudioManager localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         localAudioManager.setBluetoothScoOn(false);
         localAudioManager.stopBluetoothSco();
         localAudioManager.setMode(AudioManager.MODE_NORMAL);
-        Toast.makeText(this, "Service stopped", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.stopped), Toast.LENGTH_LONG).show();
     }
 
     private void checkSound() {
@@ -100,11 +104,11 @@ public class RedirectorService extends Service {
             {
                 localVisualizer.getMeasurementPeakRms(localPeak);//get the current audio peak -9600 = silent, 0 = MAX output
                 btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
-                if ((localPeak.mPeak > -8500 || Global.getXposedRequestON()) && !wasPlayingBefore && btHeadsetState == BluetoothProfile.STATE_CONNECTED) {
+                if ((localPeak.mPeak > -8500 || Global.getXposedRequestON()) && !wasPlayingBefore) {
                     //There is some audio output
                     wasPlayingBefore = true;
-                    headsetConnectedBefore = true;
-                    Global.setAudio("YES");
+                    Global.setAudio(getString(R.string.yes));
+                    Global.setAudio_Color(Color.GREEN);
                     Global.setXposedRequestON(false);
                     localAudioManager.setBluetoothScoOn(true);
                     localAudioManager.startBluetoothSco();
@@ -116,30 +120,28 @@ public class RedirectorService extends Service {
                     android.os.SystemClock.sleep(2000);//... plus this 2 seconds
                     localVisualizer.getMeasurementPeakRms(localPeak); //check again
                 }
-                if ((localPeak.mPeak <= -8500 && wasPlayingBefore) || (headsetConnectedBefore && btHeadsetState == BluetoothProfile.STATE_DISCONNECTED) || Global.getXposedRequestOFF()) {
+                if ((localPeak.mPeak <= -8500 && wasPlayingBefore) || Global.getXposedRequestOFF()) {
                     //Audio didn't get back in last 2 seconds...
                     Global.setXposedRequestOFF(false);
-                    wasPlayingBefore = false;
                     headsetConnectedBefore = false;
-                    Global.setAudio("NO");
+                    Global.setAudio(getString(R.string.no));
+                    Global.setAudio_Color(Color.RED);
                     localAudioManager.setBluetoothScoOn(false);
                     localAudioManager.stopBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_NORMAL);
                 }
                 android.os.SystemClock.sleep(100); //Slow down the loop
-                Log.d("BTService", "Peak: " + String.valueOf(localPeak.mPeak)); //Debug info - Audio peak -9600 = Silent, 0 = MAX Output
+                //Log.d("BTService", "Peak: " + String.valueOf(localPeak.mPeak)); //Debug info - Audio peak -9600 = Silent, 0 = MAX Output
             }
             localVisualizer.release();
         } else {
             while (keeprunning) {
                 //No KITKAT :(
-                btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
 
-                if ((localAudioManager.isMusicActive() || Global.getXposedRequestON()) && !wasPlayingBefore && btHeadsetState == 2) {
+                if ((localAudioManager.isMusicActive() || Global.getXposedRequestON()) && !wasPlayingBefore) {
                     //There is some audio output
                     Global.setXposedRequestON(false);
                     wasPlayingBefore = true;
-                    headsetConnectedBefore = true;
                     localAudioManager.setBluetoothScoOn(true);
                     localAudioManager.startBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -149,11 +151,10 @@ public class RedirectorService extends Service {
                     //output (temporary) gone
                     android.os.SystemClock.sleep(2000);//... plus this 2 seconds
                 }
-                if ((!localAudioManager.isMusicActive() && wasPlayingBefore) || (headsetConnectedBefore && btHeadsetState == BluetoothProfile.STATE_DISCONNECTED) || Global.getXposedRequestOFF()) {
+                if ((!localAudioManager.isMusicActive() && wasPlayingBefore) || Global.getXposedRequestOFF()) {
                     //Audio didn't get back in last 2 seconds...
                     Global.setXposedRequestOFF(false);
                     wasPlayingBefore = false;
-                    headsetConnectedBefore = false;
                     localAudioManager.setBluetoothScoOn(false);
                     localAudioManager.stopBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_NORMAL);

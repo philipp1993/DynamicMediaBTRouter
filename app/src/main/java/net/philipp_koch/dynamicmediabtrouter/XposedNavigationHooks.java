@@ -10,6 +10,7 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -23,6 +24,7 @@ public class XposedNavigationHooks implements  IXposedHookLoadPackage {
 
             XposedBridge.log("Navigon detected: " + lpparam.packageName);
             Log.d("NavigonXposed", "Navigon started");
+            /*
             net.philipp_koch.dynamicmediabtrouter.Global.setXposedRequestON(true);
             Class NK_Sound = XposedHelpers.findClass("com.navigon.nk.iface.NK_Sound", lpparam.classLoader);
 
@@ -58,6 +60,15 @@ public class XposedNavigationHooks implements  IXposedHookLoadPackage {
                     XposedBridge.log("Navigon playbackStarted");
                 }
             });
+*/
+            /*findAndHookMethod("com.navigon.navigator_select.http.chromium.ChromiumResponse", lpparam.classLoader, "getCmdStatusCode", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    Log.d("NavigonXposed", " getCmdStatusCode");
+                    XposedBridge.log("Navigon getCmdStatusCode");
+                    XposedHelpers.setIntField("ChromiumResponse","getCmdStatusCode",100);
+                }
+            });*/
 
         }
     }

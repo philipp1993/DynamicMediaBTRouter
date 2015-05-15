@@ -142,12 +142,19 @@
         android:id="@+id/Volume_Media"
             android:layout_gravity="center_vertical" />
 
-        <TextView
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textview_static_help"
-            android:id="@+id/textView"
-            android:paddingTop="25dp" />
+            android:text="@string/button_start"
+            android:id="@+id/check_start"
+            android:onClick="onCheckboxClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_stop"
+            android:id="@+id/check_stop"
+            android:onClick="onCheckboxClicked" />
 
         <CheckBox
         android:layout_width="wrap_content"
@@ -162,6 +169,13 @@
         android:text="@string/button_call"
         android:id="@+id/check_call"
             android:onClick="onCheckboxClicked" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textview_static_help"
+            android:id="@+id/textView"
+            android:paddingTop="25dp" />
 
         <TableRow
             android:layout_width="fill_parent"
