@@ -21,6 +21,10 @@ If you choose this option the audio redirection will start as soon as you start 
 If you choose the reconnect after call option the service restarts itself after a voice call is terminated (the telephone app has priority over the sco channel).
 The service also restarts if you end the "call" for media redirection. This option is only available in combination with static redirection.
 
+### automatic start/stop of the service
+
+There is one option to stop the service if the devices disconnects or if bluetooth is turned off and one option to start the service when a bluetooth device connects with the hands-free profile.
+
 ### Intent to start/stop the service
 It's really really simple!
 Send of the following intents
@@ -54,7 +58,3 @@ Some things
 - Preferences for static redirecting a sometimes lost
 - (xposed) Adding a delay/pause while opening the bluetooth channel -- currently audio is lost
     - in general without xposed
-- Service stopping if bluetooth is turned off
-    - _Setting:_ stop service if device disconnects
-        - perhaps with service restart option
-- start on boot / on bluetooth device connected _(could currently be done by Tasker and the intents)_
