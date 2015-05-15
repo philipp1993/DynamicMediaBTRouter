@@ -1,9 +1,7 @@
 package net.philipp_koch.dynamicmediabtrouter;
 
 import android.app.Application;
-import android.R;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 
 
@@ -29,7 +27,7 @@ public class Global extends Application {
         BT_Color = Color.RED;
         BTDev_Color = Color.WHITE;
         Audio_Color = Color.WHITE;
-        Service = "NO";
+        Service = this.getApplicationContext().getResources().getString(R.string.no);
         BT = "";
         BTDev = "";
         Audio = "";
