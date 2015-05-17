@@ -16,6 +16,7 @@ public class Global extends Application {
     private static int Service_Color, BT_Color, BTDev_Color, Audio_Color;
     private static boolean XposedRequestON=false;
     private static boolean XposedRequestOFF=false;
+    private static boolean IntentRequest=false;
     private static Context mContext;
     private static Notification noti;
 
@@ -68,6 +69,8 @@ public class Global extends Application {
 
     public static boolean getXposedRequestOFF() { return XposedRequestOFF;}
 
+    public static boolean getIntentRequest() { return IntentRequest;}
+
     public static void setService(String str)
     {
         Service = str;
@@ -99,6 +102,8 @@ public class Global extends Application {
     public static void setXposedRequestON(Boolean bool) { XposedRequestON = bool;}
 
     public static void setXposedRequestOFF(Boolean bool) { XposedRequestOFF = bool;}
+
+    public static void setIntentRequest(Boolean bool) { IntentRequest = bool;}
 
     public static Context getContext(){
         return mContext;

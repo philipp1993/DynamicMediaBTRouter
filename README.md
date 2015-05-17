@@ -21,13 +21,22 @@ If you choose this option the audio redirection will start as soon as you start 
 If you choose the reconnect after call option the service restarts itself after a voice call is terminated (the telephone app has priority over the sco channel).
 The service also restarts if you end the "call" for media redirection. This option is only available in combination with static redirection.
 
-### automatic start/stop of the service
+### Automatic Start/Stop
 
-There is one option to stop the service if the devices disconnects or if bluetooth is turned off and one option to start the service when a bluetooth device connects with the hands-free profile.
+There is one option which stops the service if:
+- the connected device is no longer used for the hands-free profile
+- the connected device disconnects
+- bluetooth is turned off
+
+There is one option which starts the service if:
+- a device connects with the hands-free profile
 
 ### Intent to start/stop the service
-It's really really simple!
-Send of the following intents
+You could use Tasker or something else to send a intent to start the service.
+Keep in mind that the intents override the checks for a valid connection!
+If you start the service with no device connected the audio route is not predictable.
+
+Send of the following intents:
 - net.philipp_koch.dynamicmediabtrouter.ON
 - net.philipp_koch.dynamicmediabtrouter.OFF
 
@@ -37,7 +46,7 @@ Send of the following intents
     - API Level 19 (Kitkit - Android 4.4) for audio recognition via the visualizer API.
 - A bluetooth device which supports the hands free profile (usually headsets or car speakerphones)
 - No task managers! They're crap and nothing else! They kill the background service so don't complain!
-- _optional_: Xposed framework 54 - I hook the audio playback function of several navigation apps and add a delay resulting that the service has enough time to open the channel so no information is lost
+- _optional_: Xposed framework 54 - To hook the audio playback function of several navigation apps and add a delay resulting that the service has enough time to open the channel so no information is lost
     - **currently supported apps:**
     - _none. work in progress_
 
