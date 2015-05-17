@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Dynamic Media BT Router</string>
-    <string name="TurnBTon">Zuerst Headset verbinden</string>
+    <string name="TurnBTon">Zuerst Headset verbinden&#8230;</string>
     <string name="aboutHelp"><a href="localhost">Über / Hilfe</a></string>
     <string name="button_call">Nach Anruf wieder verbinden</string>
     <string name="button_start">Starte wenn Gerät verbunden</string>
-    <string name="button_static">dauerhaftes Umleiten</string>
+    <string name="button_static">dauerhaftes Umleiten (keine Audio Erkennung)</string>
     <string name="button_stop">Stoppe wenn Gerät entfernt</string>
     <string name="connected">verbunden</string>
     <string name="connecting">verbinden&#8230;</string>
@@ -15,8 +15,8 @@
     <string name="off">AUS</string>
     <string name="on">AN</string>
     <string name="row_audio">Audio erkannt:&#160;</string>
-    <string name="row_bt">Bluetooth ist:&#160;</string>
-    <string name="row_hf">Freisprechen ist:&#160;</string>
+    <string name="row_bt">Bluetooth:&#160;</string>
+    <string name="row_hf">Freisprechen:&#160;</string>
     <string name="row_service">Dienst aktiv:&#160;</string>
     <string name="row_xposed_value">inaktive</string>
     <string name="starting">Dienst startet</string>
@@ -25,4 +25,5 @@
     <string name="textview_service">Dienst:</string>
     <string name="textview_static_help">Änderungen werden beim nächsten Start des Dienstes aktiv.\n\nDie \"wieder verbinden\" Option ist nur beim dauerhaften Weiterleiten aktiv.\n</string>
     <string name="yes">JA</string>
+    <string name="row_xposed">Xposed Modul:&#160;</string>
 </resources>

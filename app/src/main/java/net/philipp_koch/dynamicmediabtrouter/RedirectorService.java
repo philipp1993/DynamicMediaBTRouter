@@ -1,9 +1,14 @@
 package net.philipp_koch.dynamicmediabtrouter;
 
 import java.lang.String;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothProfile;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -12,9 +17,11 @@ import android.media.AudioManager;
 import android.media.audiofx.Visualizer;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationManagerCompat;
 import android.widget.Toast;
 import java.lang.Thread;
 import android.util.Log;
+import android.support.v4.app.NotificationCompat;
 /**
  * Created by Philipp on 12.03.2015.
  */
@@ -41,9 +48,20 @@ public class RedirectorService extends Service {
         boolean staticredirection = localPreferences.getBoolean("staticredirection", false);
         Log.d("BTService", "static pref: " + staticredirection);
 
-        if(btHeadsetState == BluetoothAdapter.STATE_ON) {
-            Toast.makeText(this, getString(R.string.starting), Toast.LENGTH_LONG).show();
+        if(btHeadsetState == BluetoothProfile.STATE_CONNECTED || btHeadsetState == BluetoothProfile.STATE_DISCONNECTED) {
             keeprunning = true;
+
+            Intent notificationIntent = new Intent(getBaseContext(), MainActivity.class);
+            PendingIntent pendingIntent=PendingIntent.getActivity(getBaseContext(), 1, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            Notification localNotification = new NotificationCompat.Builder(getApplicationContext())
+                    .setTicker(getString(R.string.starting))
+                    .setCategory(NotificationCompat.CATEGORY_SERVICE)
+                    .setPriority(NotificationCompat.PRIORITY_LOW)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .build();
+
+            startForeground(1, localNotification);
 
             Global.setService(getString(R.string.yes));
             Global.setService_Color(Color.GREEN);
@@ -83,7 +101,6 @@ public class RedirectorService extends Service {
         localAudioManager.setBluetoothScoOn(false);
         localAudioManager.stopBluetoothSco();
         localAudioManager.setMode(AudioManager.MODE_NORMAL);
-        Toast.makeText(this, getString(R.string.stopped), Toast.LENGTH_LONG).show();
     }
 
     private void checkSound() {

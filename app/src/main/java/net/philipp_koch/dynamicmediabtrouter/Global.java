@@ -1,6 +1,7 @@
 package net.philipp_koch.dynamicmediabtrouter;
 
 import android.app.Application;
+import android.app.Notification;
 import android.content.Context;
 import android.graphics.Color;
 
@@ -16,6 +17,7 @@ public class Global extends Application {
     private static boolean XposedRequestON=false;
     private static boolean XposedRequestOFF=false;
     private static Context mContext;
+    private static Notification noti;
 
 
     @Override

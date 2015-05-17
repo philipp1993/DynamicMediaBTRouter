@@ -2,14 +2,14 @@
     <string name="app_name">Dynamic Media BT Router</string>
     <string name="aboutHelp"><a href="localhost">About / Help</a></string>
     <string name="row_xposed_value">inactive</string>
-    <string name="row_bt">Bluetooth is:&#160;</string>
-    <string name="row_hf">Hands free is:&#160;</string>
+    <string name="row_bt">Bluetooth:&#160;</string>
+    <string name="row_hf">Hands free:&#160;</string>
     <string name="row_service">Service active:&#160;</string>
     <string name="row_audio">Audio detected:&#160;</string>
-    <string name="row_xposed" translatable="false">Xposed module:&#160;</string>
+    <string name="row_xposed">Xposed module:&#160;</string>
     <string name="textview_mediavolume">Media Volume</string>
-    <string name="textview_static_help">Changes become active on next service start.\n\nThe reconnect option is only used together with static redirecting is used.\n</string>
-    <string name="button_static">static redirecting</string>
+    <string name="textview_static_help">Changes become active on next service start.\n\nThe reconnect option is only used together with static redirecting.\n</string>
+    <string name="button_static">static redirecting (no audio detection)</string>
     <string name="button_call">reconnect after call</string>
     <string name="textview_service">Service:</string>
     <string name="manifest_xposed" translatable="false">Hooks the playback method of various navigation apps to gain some time for the dynamic service to switch to bluetooth. Currently support apps: NONE! Work in progress</string>
@@ -23,7 +23,7 @@
     <string name="disconnected">disconnected</string>
     <string name="connecting">connecting&#8230;</string>
     <string name="noInformation">no information - static redirection active</string>
-    <string name="TurnBTon">Connect Headset first</string>
+    <string name="TurnBTon">Connect Headset first&#8230;</string>
     <string name="starting">Service starting</string>
     <string name="stopped">Service stopped</string>
 </resources>
