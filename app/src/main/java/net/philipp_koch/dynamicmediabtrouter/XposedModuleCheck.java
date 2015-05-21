@@ -22,7 +22,7 @@ public class XposedModuleCheck implements IXposedHookZygoteInit, IXposedHookInit
         if (resparam.packageName.equals("net.philipp_koch.dynamicmediabtrouter"))
         {
             XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);
-           resparam.res.setReplacement(resparam.packageName, "string", "row_xposed_value", "active");
+           resparam.res.setReplacement(resparam.packageName, "string", "row_xposed_value", Global.getContext().getResources().getString(R.string.active));
         }
     }
 }

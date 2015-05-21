@@ -8,7 +8,7 @@ android {
         applicationId "net.philipp_koch.dynamicmediabtrouter"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 11
+        versionCode 13
         versionName "0.6.0"
     }
     buildTypes {
@@ -21,6 +21,6 @@ android {
 
 dependencies {
     provided fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:support-v4:22.1.1"
+    //compile "com.android.support:support-v4:22.1.1"
 }
 

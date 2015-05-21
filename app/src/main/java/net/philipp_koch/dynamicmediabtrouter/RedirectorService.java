@@ -5,6 +5,7 @@ import java.lang.String;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.app.TaskStackBuilder;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothProfile;
 import android.content.SharedPreferences;
@@ -18,7 +19,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 import java.lang.Thread;
 import android.util.Log;
-import android.support.v4.app.NotificationCompat;
+//import android.support.v4.app.NotificationCompat;
 /**
  * Created by Philipp on 12.03.2015.
  */
@@ -48,17 +49,10 @@ public class RedirectorService extends Service {
         if(btHeadsetState == BluetoothProfile.STATE_CONNECTED || Global.getIntentRequest() /*|| btHeadsetState == BluetoothProfile.STATE_DISCONNECTED*/) {
             keeprunning = true;
 
-            Intent notificationIntent = new Intent(getBaseContext(), MainActivity.class);
-            PendingIntent pendingIntent=PendingIntent.getActivity(getBaseContext(), 1, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            Notification.Builder mBuilder = new Notification.Builder(this)
+                    .setTicker(getString(R.string.starting));
 
-            Notification localNotification = new NotificationCompat.Builder(getApplicationContext())
-                    .setTicker(getString(R.string.starting))
-                    .setCategory(NotificationCompat.CATEGORY_SERVICE)
-                    .setPriority(NotificationCompat.PRIORITY_LOW)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .build();
-
-            startForeground(1, localNotification);
+            startForeground(1, mBuilder.getNotification());
 
             Global.setService(getString(R.string.yes));
             Global.setService_Color(Color.GREEN);
