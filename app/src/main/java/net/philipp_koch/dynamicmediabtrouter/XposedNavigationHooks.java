@@ -6,18 +6,14 @@ package net.philipp_koch.dynamicmediabtrouter;
 
 import android.util.Log;
 
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class XposedNavigationHooks implements  IXposedHookLoadPackage {
+public class XposedNavigationHooks implements IXposedHookLoadPackage {
 
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-       // XposedBridge.log("Package detected: " + lpparam.packageName);
+        // XposedBridge.log("Package detected: " + lpparam.packageName);
         //Log.d("NavigonXposed", "Package detected: " + lpparam.packageName);
 
         if (lpparam.packageName.contains("navigon")) {

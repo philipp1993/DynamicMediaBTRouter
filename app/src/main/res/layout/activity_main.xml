@@ -3,194 +3,234 @@
     android:layout_height="fill_parent"
     android:padding="16dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mainLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
         <TableLayout
+            android:id="@+id/table_status"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/table_status">
+            android:layout_height="fill_parent">
 
             <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/row_BT">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/row_bt"
-                android:id="@+id/text_BT" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/text_BT_value" />
-        </TableRow>
-
-            <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/row_BTCon" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/row_hf"
-                android:id="@+id/text_BTDev" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/text_BTDev_value" />
-        </TableRow>
-
-            <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/row_Service" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/row_service"
-                android:id="@+id/text_Service" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/text_Service_value" />
-        </TableRow>
-
-            <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/row_Audio" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/row_audio"
-                android:id="@+id/text_Audio" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/text_Audio_value" />
-
-        </TableRow>
-<!--
-            <TableRow
+                android:id="@+id/row_BT"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/row_Xposed" >
+                android:layout_height="fill_parent">
 
                 <TextView
+                    android:id="@+id/text_BT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/row_xposed"
-                    android:id="@+id/text_Xposed" />
+                    android:text="@string/row_bt" />
 
                 <TextView
+                    android:id="@+id/text_BT_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/row_xposed_value"
-                    android:id="@+id/text_Xposed_value" />
+                    android:text="" />
+            </TableRow>
 
-            </TableRow>-->
+            <TableRow
+                android:id="@+id/row_BTCon"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/text_BTDev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/row_hf" />
+
+                <TextView
+                    android:id="@+id/text_BTDev_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row_Service"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/text_Service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/row_service" />
+
+                <TextView
+                    android:id="@+id/text_Service_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row_Audio"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/text_Audio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/row_audio" />
+
+                <TextView
+                    android:id="@+id/text_Audio_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+            </TableRow>
+
+            <!--<TableRow
+                android:id="@+id/row_Call"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/text_Call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/row_call" />
+
+                <TextView
+                    android:id="@+id/text_Call_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+            </TableRow>
+
+                        <TableRow
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:id="@+id/row_Xposed" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/row_xposed"
+                                android:id="@+id/text_Xposed" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/row_xposed_value"
+                                android:id="@+id/text_Xposed_value" />
+
+                        </TableRow>-->
         </TableLayout>
 
         <TableRow
+            android:id="@+id/row_AboutHelp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/row_AboutHelp"
             android:paddingTop="10dp">
 
             <TextView
+                android:id="@+id/text_AboutHelp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/aboutHelp"
-                android:id="@+id/text_AboutHelp"
+                android:paddingRight="10dp"
                 android:autoLink="all"
-                android:linksClickable="true"
                 android:clickable="true"
+                android:linksClickable="true"
                 android:onClick="goToHelpAbout"
+                android:text="@string/aboutHelp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text_Privacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:clickable="true"
+                android:linksClickable="true"
+                android:onClick="goToPrivacy"
+                android:text="@string/privacy"
                 android:textSize="20sp" />
 
         </TableRow>
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textview_mediavolume"
-        android:id="@+id/text_Volume_Media"
+            android:id="@+id/text_Volume_Media"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:paddingTop="25dp"
-            android:layout_gravity="center_horizontal" />
+            android:text="@string/textview_mediavolume" />
 
         <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Volume_Media"
+            android:id="@+id/Volume_Media"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical" />
 
         <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_start"
             android:id="@+id/check_start"
-            android:onClick="onCheckboxClicked" />
-
-        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_stop"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/button_start" />
+
+        <CheckBox
             android:id="@+id/check_stop"
-            android:onClick="onCheckboxClicked" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/button_stop" />
 
         <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_static"
-        android:id="@+id/check_static"
-            android:onClick="onCheckboxClicked" />
+            android:id="@+id/check_static"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/button_static" />
 
         <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_call"
-        android:id="@+id/check_call"
-            android:onClick="onCheckboxClicked" />
+            android:id="@+id/check_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="@string/button_call" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textview_static_help"
-            android:id="@+id/textView"
-            android:paddingTop="25dp" />
+            android:paddingTop="25dp"
+            android:text="@string/textview_static_help" />
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:gravity="center">
 
-            <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Start"  android:onClick="ButtonOn"
-                android:layout_gravity="bottom"
+            <Button
                 android:id="@+id/button_start"
+                android:layout_width="100.0dip"
+                android:layout_height="50.0dip"
+                android:layout_gravity="bottom"
+                android:onClick="ButtonOn"
+                android:text="Start"
                 android:textColor="#00FF00" />
 
-            <Button android:layout_width="100.0dip" android:layout_height="50.0dip" android:text="Stop" android:onClick="ButtonOff"
-                android:layout_gravity="bottom"
+            <Button
                 android:id="@+id/button_stop"
+                android:layout_width="100.0dip"
+                android:layout_height="50.0dip"
+                android:layout_gravity="bottom"
+                android:onClick="ButtonOff"
+                android:text="Stop"
                 android:textColor="#FF0000" />
         </TableRow>
 

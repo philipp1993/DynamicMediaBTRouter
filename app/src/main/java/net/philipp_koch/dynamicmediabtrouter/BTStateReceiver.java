@@ -15,15 +15,14 @@ import android.util.Log;
 /**
  * Created by Philipp on 14.05.2015.
  */
-public class BTStateReceiver extends BroadcastReceiver{
+public class BTStateReceiver extends BroadcastReceiver {
 
-    public SharedPreferences localPreferences;
     final int api = Build.VERSION.SDK_INT;
+    public SharedPreferences localPreferences;
     BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
     @Override
-    public void onReceive(Context localContext, Intent localIntent)
-    {
+    public void onReceive(Context localContext, Intent localIntent) {
         Resources res = Global.getContext().getResources();
         localPreferences = PreferenceManager.getDefaultSharedPreferences(localContext);
         boolean autoStart, autoStop;
@@ -32,23 +31,18 @@ public class BTStateReceiver extends BroadcastReceiver{
         String intent = localIntent.getAction();
         Log.d("BTSTateReceiver", intent);
 
-        if ("android.bluetooth.adapter.action.STATE_CHANGED".equals(intent))
-        {
+        if ("android.bluetooth.adapter.action.STATE_CHANGED".equals(intent)) {
             //Log.d("BTStateReceiver", "state changed");
             int AdapterState = localIntent.getIntExtra("android.bluetooth.adapter.extra.STATE", BluetoothAdapter.ERROR);
-            if((AdapterState == BluetoothAdapter.STATE_OFF || AdapterState == BluetoothAdapter.STATE_TURNING_OFF))
-            {
+            if ((AdapterState == BluetoothAdapter.STATE_OFF || AdapterState == BluetoothAdapter.STATE_TURNING_OFF)) {
                 Log.d("BTStateReceiver", "state off");
                 Global.setBT(res.getString(R.string.off));
                 Global.setBT_Color(Color.RED);
                 Global.setBTDev("");
-                if(autoStop)
-                {
+                if (autoStop) {
                     localContext.stopService(new Intent(localContext, RedirectorService.class));
                 }
-            }
-            else
-            {
+            } else {
                 Log.d("BTStateReceiver", "state on");
                 Global.setBT(res.getString(R.string.on));
                 Global.setBT_Color(Color.GREEN);
@@ -57,7 +51,7 @@ public class BTStateReceiver extends BroadcastReceiver{
             }
         }
 
-        if("android.bluetooth.adapter.action.CONNECTION_STATE_CHANGED".equals(intent)) {
+        if ("android.bluetooth.adapter.action.CONNECTION_STATE_CHANGED".equals(intent)) {
             //Log.d("BTStateReceiver", "connection changed");
             int ConnectionState = localIntent.getIntExtra("android.bluetooth.adapter.extra.CONNECTION_STATE", BluetoothAdapter.ERROR);
             Log.d("BTStateReceiver", "connection state: " + ConnectionState);
@@ -65,7 +59,7 @@ public class BTStateReceiver extends BroadcastReceiver{
             if (ConnectionState == BluetoothAdapter.STATE_DISCONNECTED || ConnectionState == BluetoothAdapter.STATE_DISCONNECTING) {
                 Global.setBTDev(res.getString(R.string.disconnected));
                 Global.setBTDev_Color(Color.RED);
-                if(autoStop){
+                if (autoStop) {
                     localContext.stopService(new Intent(localContext, RedirectorService.class));
                 }
             }
@@ -79,7 +73,7 @@ public class BTStateReceiver extends BroadcastReceiver{
                 int btHeadsetState = localBluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET); //get the current connection status for the handsfree profile
                 Log.d("BTSTateReceiver", "HFP state: " + btHeadsetState);
 
-                if(btHeadsetState == BluetoothProfile.STATE_CONNECTING) {
+                if (btHeadsetState == BluetoothProfile.STATE_CONNECTING) {
                     int counter = 0;
                     int waittime = 200;
                     Global.setBTDev(res.getString(R.string.connecting));
@@ -96,8 +90,7 @@ public class BTStateReceiver extends BroadcastReceiver{
                     if (autoStart) {
                         localContext.startService(new Intent(localContext, RedirectorService.class));
                     }
-                }
-                else {
+                } else {
                     Global.setBTDev(res.getString(R.string.disconnected));
                     Global.setBTDev_Color(Color.RED);
                 }

@@ -5,6 +5,7 @@ package net.philipp_koch.dynamicmediabtrouter;
  */
 
 import android.content.res.XModuleResources;
+
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
@@ -19,10 +20,9 @@ public class XposedModuleCheck implements IXposedHookZygoteInit, IXposedHookInit
 
     @Override
     public void handleInitPackageResources(InitPackageResourcesParam resparam) throws Throwable {
-        if (resparam.packageName.equals("net.philipp_koch.dynamicmediabtrouter"))
-        {
+        if (resparam.packageName.equals("net.philipp_koch.dynamicmediabtrouter")) {
             XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);
-           resparam.res.setReplacement(resparam.packageName, "string", "row_xposed_value", Global.getContext().getResources().getString(R.string.active));
+            resparam.res.setReplacement(resparam.packageName, "string", "row_xposed_value", Global.getContext().getResources().getString(R.string.active));
         }
     }
 }

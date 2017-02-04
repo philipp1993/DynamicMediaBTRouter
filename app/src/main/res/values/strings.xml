@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Dynamic Media BT Router</string>
     <string name="aboutHelp"><a href="localhost">About / Help</a></string>
+    <string name="privacy"><a href="localhost">privacy policy</a></string>
     <string name="row_xposed_value">inactive</string>
     <string name="row_bt">Bluetooth:&#160;</string>
     <string name="row_hf">Hands free:&#160;</string>
     <string name="row_service">Service active:&#160;</string>
     <string name="row_audio">Audio detected:&#160;</string>
+    <string name="row_call">Helper call:&#160;</string>
     <string name="row_xposed">Xposed module:&#160;</string>
     <string name="textview_mediavolume">Media Volume</string>
     <string name="textview_static_help">Changes become active on next service start.\n\nThe reconnect option is only used together with static redirecting.\n</string>

@@ -27,4 +27,6 @@
     <string name="yes">JA</string>
     <string name="row_xposed">Xposed Modul:&#160;</string>
     <string name="active">aktiv</string>
+    <string name="row_call"><![CDATA[Helper call: ]]></string>
+    <string name="privacy"><a href="localhost">Datenschutz</a></string>
 </resources>

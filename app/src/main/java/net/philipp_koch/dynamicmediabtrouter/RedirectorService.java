@@ -1,33 +1,29 @@
 package net.philipp_koch.dynamicmediabtrouter;
 
-import java.lang.String;
-
 import android.app.Notification;
-import android.app.PendingIntent;
 import android.app.Service;
-import android.app.TaskStackBuilder;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothProfile;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.audiofx.Visualizer;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
-import java.lang.Thread;
 import android.util.Log;
+import android.widget.Toast;
 //import android.support.v4.app.NotificationCompat;
+
 /**
  * Created by Philipp on 12.03.2015.
  */
 public class RedirectorService extends Service {
 
-    private boolean keeprunning = false;
     private static final int api = Build.VERSION.SDK_INT;
     public SharedPreferences localPreferences;
+    private boolean keeprunning = false;
 
     public IBinder onBind(Intent Intent) {
         return null;
@@ -46,7 +42,7 @@ public class RedirectorService extends Service {
         boolean staticredirection = localPreferences.getBoolean("staticredirection", false);
         Log.d("BTService", "static pref: " + staticredirection);
 
-        if(btHeadsetState == BluetoothProfile.STATE_CONNECTED || Global.getIntentRequest() /*|| btHeadsetState == BluetoothProfile.STATE_DISCONNECTED*/) {
+        if (btHeadsetState == BluetoothProfile.STATE_CONNECTED || Global.getIntentRequest() /*|| btHeadsetState == BluetoothProfile.STATE_DISCONNECTED*/) {
             keeprunning = true;
 
             Notification.Builder mBuilder = new Notification.Builder(this)
@@ -56,16 +52,14 @@ public class RedirectorService extends Service {
 
             Global.setService(getString(R.string.yes));
             Global.setService_Color(Color.GREEN);
-            if(staticredirection)
-            {
+            if (staticredirection) {
                 AudioManager localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 Global.setAudio(getString(R.string.noInformation));
                 Global.setAudio_Color(Color.WHITE);
                 localAudioManager.setBluetoothScoOn(true);
                 localAudioManager.startBluetoothSco();
                 localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
-            }
-            else {
+            } else {
                 Global.setAudio(getString(R.string.no));
                 Global.setAudio_Color(Color.RED);
                 new Thread() {
@@ -74,9 +68,7 @@ public class RedirectorService extends Service {
                     }
                 }.start();
             }
-        }
-        else
-        {
+        } else {
             Toast.makeText(this, getString(R.string.TurnBTon), Toast.LENGTH_LONG).show();
             stopSelf();
         }
@@ -95,7 +87,7 @@ public class RedirectorService extends Service {
     }
 
     private void checkSound() {
-        Global localGlobal = ((Global)getApplicationContext());
+        Global localGlobal = ((Global) getApplicationContext());
         AudioManager localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         boolean wasPlayingBefore = false;
         boolean headsetConnectedBefore = false;
@@ -131,7 +123,7 @@ public class RedirectorService extends Service {
                 if ((localPeak.mPeak <= -8500 && wasPlayingBefore) || Global.getXposedRequestOFF()) {
                     //Audio didn't get back in last 2 seconds...
                     Global.setXposedRequestOFF(false);
-                    headsetConnectedBefore = false;
+                    wasPlayingBefore = false;
                     Global.setAudio(getString(R.string.no));
                     Global.setAudio_Color(Color.RED);
                     localAudioManager.setBluetoothScoOn(false);
@@ -168,7 +160,7 @@ public class RedirectorService extends Service {
                     localAudioManager.setMode(AudioManager.MODE_NORMAL);
                 }
                 android.os.SystemClock.sleep(100); //Slow down the loop
-                Log.d("BTService", "Music active: " + String.valueOf(localAudioManager.isMusicActive())); //Debug info - Audio peak -9600 = Silent, 0 = MAX Output
+                //Log.d("BTService", "Music active: " + String.valueOf(localAudioManager.isMusicActive())); //Debug info - Audio peak -9600 = Silent, 0 = MAX Output
             }
         }
     }

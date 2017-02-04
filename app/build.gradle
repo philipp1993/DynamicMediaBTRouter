@@ -1,26 +1,70 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
-
+    signingConfigs {
+        DefaultSigning {
+            keyAlias 'standard'
+            keyPassword 'Way23sonleR'
+            storeFile file('C:/Users/Philipp/OneDrive/AndroidStudio/AndroidStudioKeystore/keystore.jks')
+            storePassword 'Way23sonleR'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "net.philipp_koch.dynamicmediabtrouter"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 13
-        versionName "0.6.0"
+        versionCode 18
+        versionName '0.6.3'
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.DefaultSigning
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            renderscriptOptimLevel 3
+            zipAlignEnabled true
+        }
+        debug {
+            versionNameSuffix '_debug'
+            zipAlignEnabled false
+            jniDebuggable true
+            signingConfig signingConfigs.DefaultSigning
+            debuggable true
+            renderscriptDebuggable true
+            renderscriptOptimLevel 3
+            minifyEnabled false
+        }
+        beta {
+            debuggable true
+            jniDebuggable false
+            renderscriptDebuggable false
+            renderscriptOptimLevel 3
+            minifyEnabled false
+            versionNameSuffix '_beta'
+            zipAlignEnabled true
+            signingConfig signingConfigs.DefaultSigning
+        }
+    }
+    productFlavors {
+        betaFlavor {
+            minSdkVersion 14
+            applicationId 'net.philipp_koch.dynamicmediabtrouter'
+            targetSdkVersion 19
+            versionCode 18
+            versionName '0.6.3'
+        }
+        normalFlavor {
         }
     }
 }
 
 dependencies {
-    provided fileTree(dir: 'libs', include: ['*.jar'])
+    provided fileTree(include: ['*.jar'], dir: 'libs')
     //compile "com.android.support:support-v4:22.1.1"
 }
 
