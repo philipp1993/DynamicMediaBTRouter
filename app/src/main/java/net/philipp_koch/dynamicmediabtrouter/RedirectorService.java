@@ -14,7 +14,6 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
-//import android.support.v4.app.NotificationCompat;
 
 /**
  * Created by Philipp on 12.03.2015.
@@ -94,7 +93,10 @@ public class RedirectorService extends Service {
         BluetoothAdapter localBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         int btHeadsetState;
 
+        Log.d("BTService", "API Level: " + api );
+
         if (api >= 19) {
+
             Visualizer localVisualizer = new Visualizer(0);
             localVisualizer.setEnabled(true);
             localVisualizer.setMeasurementMode(Visualizer.MEASUREMENT_MODE_PEAK_RMS);
@@ -142,6 +144,8 @@ public class RedirectorService extends Service {
                     //There is some audio output
                     Global.setXposedRequestON(false);
                     wasPlayingBefore = true;
+                    Global.setAudio(getString(R.string.yes));
+                    Global.setAudio_Color(Color.GREEN);
                     localAudioManager.setBluetoothScoOn(true);
                     localAudioManager.startBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -155,6 +159,8 @@ public class RedirectorService extends Service {
                     //Audio didn't get back in last 2 seconds...
                     Global.setXposedRequestOFF(false);
                     wasPlayingBefore = false;
+                    Global.setAudio(getString(R.string.no));
+                    Global.setAudio_Color(Color.RED);
                     localAudioManager.setBluetoothScoOn(false);
                     localAudioManager.stopBluetoothSco();
                     localAudioManager.setMode(AudioManager.MODE_NORMAL);

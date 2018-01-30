@@ -5,9 +5,11 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothProfile;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
     public TextView textService, textBT, textBTDev, textAudio, textCall, textXposed;
+    private static final int api = Build.VERSION.SDK_INT;
     public SeekBar SeekBarMedia;
     public SharedPreferences localPreferences;
     boolean refresh = false;
@@ -47,7 +50,7 @@ public class MainActivity extends Activity {
         textBT = (TextView) findViewById(R.id.text_BT_value);
         textBTDev = (TextView) findViewById(R.id.text_BTDev_value);
         textAudio = (TextView) findViewById(R.id.text_Audio_value);
-        textCall = (TextView) findViewById(R.id.text_Audio_value);
+        //textCall = (TextView) findViewById(R.id.text_Audio_value);
         //textXposed = (TextView) findViewById(R.id.text_Xposed_value);
 
         localAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
@@ -69,6 +72,14 @@ public class MainActivity extends Activity {
 
         autoStop = (CheckBox) findViewById(R.id.check_stop);
         autoStop.setChecked(localPreferences.getBoolean("autoStop", true));
+
+        if (api >= 23 && !staticRedirect.isChecked()) {
+            int permissionGranted = getApplicationContext().checkSelfPermission("android.permission.RECORD_AUDIO");
+            if (permissionGranted != PackageManager.PERMISSION_GRANTED) {
+                String[] permissions = new String[] {"android.permission.RECORD_AUDIO"};
+                requestPermissions(permissions,1);
+            }
+        }
     }
 
     @Override
@@ -204,8 +215,8 @@ public class MainActivity extends Activity {
                     textAudio.setText(Global.getAudio());
                     textAudio.setTextColor(Global.getAudio_Color());
 
-                    textCall.setText(Global.getCall());
-                    textCall.setTextColor(Global.getCall_Color());
+                    //textCall.setText(Global.getCall());
+                    //textCall.setTextColor(Global.getCall_Color());
 
                     //if(textXposed.getText().equals("inactive")){textXposed.setTextColor(Color.RED);} else {textXposed.setTextColor(Color.GREEN);}
 

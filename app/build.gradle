@@ -9,14 +9,15 @@ android {
             storePassword 'Way23sonleR'
         }
     }
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.3'
     defaultConfig {
         applicationId "net.philipp_koch.dynamicmediabtrouter"
         minSdkVersion 14
-        targetSdkVersion 19
-        versionCode 18
-        versionName '0.6.3'
+        targetSdkVersion 26
+        versionCode 21
+        versionName '0.6.5'
+        signingConfig signingConfigs.DefaultSigning
     }
     buildTypes {
         release {
@@ -50,16 +51,10 @@ android {
             signingConfig signingConfigs.DefaultSigning
         }
     }
+    flavorDimensions "default"
+
     productFlavors {
-        betaFlavor {
-            minSdkVersion 14
-            applicationId 'net.philipp_koch.dynamicmediabtrouter'
-            targetSdkVersion 19
-            versionCode 18
-            versionName '0.6.3'
-        }
-        normalFlavor {
-        }
+
     }
 }
 
